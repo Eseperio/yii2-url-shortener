@@ -12,6 +12,9 @@
             "email": "admin@example.com"
         }
     ],
+    "extra": {
+        "bootstrap": "eseperio\\shortener\\Bootstrap"
+    },
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
