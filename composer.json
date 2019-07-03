@@ -5,7 +5,7 @@
     "require": {
         "yiisoft/yii2": "^2.0@dev"
     },
-    "license": "GPL",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "E.Alamo",
