@@ -19,19 +19,27 @@ use yii\base\Module;
 use yii\db\Expression;
 use yii\helpers\Url;
 
+/**
+ * Class ShortenerModule
+ * @package eseperio\shortener
+ */
 class ShortenerModule extends Module
 {
 
-//        $options="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
     /**
+     *
      * Must have a lenght of 61
+     * Default is ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789 in random order
      * @var string
      */
     public $options = "NkAXITYvw3iObfKEaoeCUxqm2Dnrugl9PthVSM8yc7GQdBJHW6Lz4ZsjR15pF";
 
 
+    /**
+     * @var array
+     */
     public $urlConfig = [
-        '<id:[\d\w]{5}>' => 'shortener/default/parse',
+        '<id:[\d\w]{4}>' => 'shortener/default/parse',
     ];
 
     /**
@@ -76,6 +84,9 @@ class ShortenerModule extends Module
     }
 
 
+    /**
+     * @return string
+     */
     public function getShortId()
     {
         return $this->generateShortId();
@@ -86,9 +97,6 @@ class ShortenerModule extends Module
      */
     private function generateShortId()
     {
-//        $options="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
-//        Shuffled
-        $id = [];
         $monthYear = +date('y') + +date('n');
         $dayHour = +date('j') + +date('G');
         $id = [

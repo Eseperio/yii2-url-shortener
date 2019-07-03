@@ -27,13 +27,14 @@ class Bootstrap implements BootstrapInterface
      */
     public function bootstrap($app)
     {
-        if (\Yii::$app->hasModule('shortener'))
-            if ($app instanceof WebApplication) {
+        if (\Yii::$app->hasModule('shortener')){
+            if ($app instanceof \yii\web\Application) {
                 $this->initUrlRoutes($app);
             }
+        }
     }
 
-    protected function initUrlRoutes(WebApplication $application)
+    protected function initUrlRoutes(\yii\web\Application $application)
     {
         $module = $application->getModule('shortener');
         /* @var $module ShortenerModule */
