@@ -29,6 +29,11 @@ class ShortenerModule extends Module
      */
     public $options = "NkAXITYvw3iObfKEaoeCUxqm2Dnrugl9PthVSM8yc7GQdBJHW6Lz4ZsjR15pF";
 
+
+    public $urlConfig = [
+        '<id:[\d\w]{5}>' => 'shortener/default/parse',
+    ];
+
     /**
      * @param $id
      * @return mixed|string the url
@@ -56,13 +61,18 @@ class ShortenerModule extends Module
      * @param $url      string|array It accepts any url format allowed by Yii2
      * @param $lifetime integer Time in seconds that the links must be available
      */
-    public function short($url, $lifetime)
+    public function short($url, $lifetime = null)
     {
         $model = new Shortener();
         $model->setAttributes([
             'url' => Url::to($url),
             'valid_until' => empty($lifetime) ? null : time() + $lifetime
         ]);
+
+        if ($model->save())
+            return $model->shortened;
+
+        return false;
     }
 
 
@@ -79,14 +89,13 @@ class ShortenerModule extends Module
 //        $options="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
 //        Shuffled
         $id = [];
-        $monthYear = +date('y') + +date('M');
+        $monthYear = +date('y') + +date('n');
         $dayHour = +date('j') + +date('G');
         $id = [
             $this->options[$monthYear],
             $this->options[$dayHour],
+            $this->options[+date('s')],
             $this->options[+date('i')],
-            $this->options[+date('s')],
-            $this->options[+date('s')],
         ];
 
         return join("", $id);

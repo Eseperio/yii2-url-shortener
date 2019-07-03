@@ -35,9 +35,8 @@ class Bootstrap implements BootstrapInterface
 
     protected function initUrlRoutes(WebApplication $application)
     {
-        $application->urlManager->addRules([
-            '<id:\d+>' => 'post/view',
-
-        ]);
+        $module = $application->getModule('shortener');
+        /* @var $module ShortenerModule */
+        $application->urlManager->addRules($module->urlConfig);
     }
 }
