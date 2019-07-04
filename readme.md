@@ -59,6 +59,6 @@ Yii::$app->getModule('shortener')->expand('link id')
 ```
 
 ## Redirection
-Module includes a controller to handle redirections. The only thing you need to make it work is create a link to your app domain followed by the short id of url.
+Module includes a controller to handle redirections. The only thing you need, to make it work, it is create a link to your app domain, followed by the short id of url.
 
 `http://myapp.tld/gGyU`

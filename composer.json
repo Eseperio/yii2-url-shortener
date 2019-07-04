@@ -1,5 +1,5 @@
 {
-    "name": "erosdelalamo/yii2-url-shortener",
+    "name": "eseperio/yii2-url-shortener",
     "description": "An extension to work with own shortened urls",
     "type": "yii2-extension",
     "require": {
