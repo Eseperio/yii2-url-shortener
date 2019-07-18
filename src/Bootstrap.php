@@ -1,12 +1,7 @@
 <?php
 /**
- * Copyright (c) 2019. Grupo Smart (Spain)
- *
- * This software is protected under Spanish law. Any distribution of this software
- * will be prosecuted.
  *
  * Developed by Waizabú <code@waizabu.com>
- * Updated by: erosdelalamo on 3/7/2019
  *
  *
  */
