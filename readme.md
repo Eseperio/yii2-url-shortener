@@ -7,6 +7,8 @@ I´ve created this library since Google closed his one.
 
 Add the module to your config file:
 
+**First:** Run the migration included in @vendor/eseperio/yii2-url-shortener/src/migrations.
+
 ```php
   //...
 
