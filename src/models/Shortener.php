@@ -36,12 +36,9 @@ class Shortener extends \yii\db\ActiveRecord
     public static function getSlugValue($event)
     {
         $module = \Yii::$app->getModule('shortener');
-        $shorts = Shortener::find()->select('shortened')->column();
-        do {
-            /* @var $module ShortenerModule */
-            $shortId = $module->getShortId();
-        } while (in_array($shortId, $shorts));
-        return $shortId;
+
+        /* @var $module ShortenerModule */
+        return $module->getShortId();
     }
 
     /**
