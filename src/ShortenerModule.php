@@ -35,7 +35,6 @@ class ShortenerModule extends Module
      */
     public $urlConfig = [
         '<id:[\d\w]{4}>' => 'shortener/default/parse',
-        '<id:[\d\w]{4}\-[\d]{1}>' => 'shortener/default/parse',
     ];
 
     /**
