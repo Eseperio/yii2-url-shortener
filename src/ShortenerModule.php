@@ -92,17 +92,15 @@ class ShortenerModule extends Module
      */
     private function generateShortId()
     {
-        $monthYear = +date('y') + +date('n');
-        $dayHour = +date('j') + +date('G');
+        $date = new \DateTime();
+        $monthYear = $date->format('y') + $date->format('n');
+        $dayHour = $date->format('j') + $date->format('G');
         $id = [
             $this->options[$monthYear],
             $this->options[$dayHour],
-            $this->options[+date('s')],
-            $this->options[+date('i')],
+            $this->options[array_sum(mb_str_split($date->format('u')))],
+            $this->options[$date->format('s')],
         ];
-
         return join("", $id);
-
-
     }
 }

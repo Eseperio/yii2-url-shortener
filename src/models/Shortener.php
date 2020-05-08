@@ -33,7 +33,7 @@ class Shortener extends \yii\db\ActiveRecord
      * @param $event
      * @return string
      */
-    public static function getSlugValue($event)
+    public static function getSlugValue($event = null)
     {
         $module = \Yii::$app->getModule('shortener');
 
@@ -77,6 +77,9 @@ class Shortener extends \yii\db\ActiveRecord
                 'class' => SluggableBehavior::class,
                 'slugAttribute' => 'shortened',
                 'ensureUnique' => true,
+                'uniqueSlugGenerator' => function ($baseSlug, $iteration, $owner) {
+                    return $owner->getSlugValue();
+                },
                 'value' => [$this, 'getSlugValue']
             ]
         ];
