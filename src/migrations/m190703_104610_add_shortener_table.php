@@ -26,7 +26,11 @@ class m190703_104610_add_shortener_table extends Migration
             'id' => $this->primaryKey(),
             'url' => $this->string(255),
             'shortened' => $this->string(25),
-            'valid_until'=> $this->integer()
+            'valid_until' => $this->integer(),
+            'created_by' => $this->string(3),
+            'created_at' => $this->dateTime(),
+            'updated_by' => $this->string(3),
+            'updated_at' => $this->dateTime(),
         ]);
 
         $this->createIndex('shortenedUrl', $this->tableName, [
