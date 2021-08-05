@@ -15,7 +15,7 @@ use yii\db\Migration;
 class m190703_104610_add_shortener_table extends Migration
 {
 
-    private $tableName = 'yii2_shortener';
+    private $tableName = '{{%url_links}}';
 
     /**
      * {@inheritdoc}
@@ -24,9 +24,13 @@ class m190703_104610_add_shortener_table extends Migration
     {
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'url' => $this->string(256),
-            'shortened' => $this->string(16),
-            'valid_until'=> $this->integer()
+            'url' => $this->string(255),
+            'shortened' => $this->string(25),
+            'valid_until' => $this->integer(),
+            'created_by' => $this->string(3),
+            'created_at' => $this->dateTime(),
+            'updated_by' => $this->string(3),
+            'updated_at' => $this->dateTime(),
         ]);
 
         $this->createIndex('shortenedUrl', $this->tableName, [

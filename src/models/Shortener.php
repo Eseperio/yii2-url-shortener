@@ -8,6 +8,9 @@
 
 namespace eseperio\shortener\models;
 
+use yii\db\ActiveRecord;
+use yii\behaviors\BlameableBehavior;
+use yii\db\Expression;
 use eseperio\shortener\ShortenerModule;
 use yii\behaviors\SluggableBehavior;
 
@@ -26,7 +29,7 @@ class Shortener extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'yii2_shortener';
+        return '{{%url_links}}';
     }
 
     /**
@@ -48,8 +51,8 @@ class Shortener extends \yii\db\ActiveRecord
     {
         return [
             [['valid_until'], 'integer'],
-            [['url'], 'string', 'max' => 256],
-            [['shortened'], 'string', 'max' => 16],
+            [['url'], 'string', 'max' => 255],
+            [['shortened'], 'string', 'max' => 25],
             [['shortened'], 'unique'],
         ];
     }
@@ -73,6 +76,19 @@ class Shortener extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'value' => new Expression('NOW()'),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
             'sluggable' => [
                 'class' => SluggableBehavior::class,
                 'slugAttribute' => 'shortened',

@@ -5,34 +5,47 @@ I´ve created this library since Google closed his one.
 
 ## Installation
 
-Add the module to your config file:
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
+
+```
+php composer.phar require erosdelalamo/yii2-url-shortener
+```
+
+or add
+
+```
+"erosdelalamo/yii2-url-shortener": "^0.1.0"
+```
+
+to the require section of your `composer.json` file.
+
+
+## Setting
 
 **First:** Run the migration included in @vendor/eseperio/yii2-url-shortener/src/migrations.
 
-```php
-  //...
+**Second:** Add this setting to your `config\main.php` file.
 
+Add the bootstrap, module and components class:
+```php
+
+'basePath' => dirname(__DIR__),
+'bootstrap' => [
+     'log',
+     'shortener',
+],
 'modules' => [
      'shortener' => [
             'class' => \eseperio\shortener\ShortenerModule::class
         ]
-  ]
-
-  //...
-
-```
-
-Add the bootstrap class to your bootstrap configuration.
-```php
-
-'basePath' => dirname(__DIR__),
-    'bootstrap' => [
-        'log',
-        \eseperio\shortener\Bootstrap::class,
-    ],
-
-    'aliases' => [
-    //...
+],
+'components' => [
+     'shortener' => [
+            'class' => 'eseperio\shortener\Bootstrap'
+        ],
+],
 ```
 
 ## Usage
