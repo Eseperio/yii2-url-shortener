@@ -26,7 +26,7 @@ class Shortener extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'yii2_shortener';
+        return '{{%url_links}}';
     }
 
     /**
@@ -48,8 +48,8 @@ class Shortener extends \yii\db\ActiveRecord
     {
         return [
             [['valid_until'], 'integer'],
-            [['url'], 'string', 'max' => 256],
-            [['shortened'], 'string', 'max' => 16],
+            [['url'], 'string', 'max' => 255],
+            [['shortened'], 'string', 'max' => 25],
             [['shortened'], 'unique'],
         ];
     }
