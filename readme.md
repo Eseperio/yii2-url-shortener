@@ -1,7 +1,6 @@
 # Yii2 url shortener.
 
-I´ve created this library since Google closed his one.
-
+Make short links within your own yii2 application. Can even define an expiration date for a shortened url. See this readme file to learn how.
 
 ## Installation
 
