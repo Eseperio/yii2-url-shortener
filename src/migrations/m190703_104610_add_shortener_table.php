@@ -15,7 +15,7 @@ use yii\db\Migration;
 class m190703_104610_add_shortener_table extends Migration
 {
 
-    private $tableName = 'yii2_shortener';
+    private $tableName = '{{%yii2_shortener}}';
 
     /**
      * {@inheritdoc}
